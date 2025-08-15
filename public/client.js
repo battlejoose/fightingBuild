@@ -88,8 +88,14 @@ window.addEventListener('load', function() {
 		
 	});//END_SOCKET.ON
 	
-
-		        
+	// Combat HIT relay (flat string: attackerId:targetId:weaponDamage:attackDamage:hitX:hitY:hitZ:attackName:hitId)
+	socket.on('HIT', function(flat) {
+		if(window.unityInstance!=null)
+		{
+			window.unityInstance.SendMessage ('NetworkManager', 'OnHit', flat);
+		}
+	});
+			        
 	socket.on('USER_DISCONNECTED', function(id) {
 	
 	     var currentUserAtr = id;
@@ -102,7 +108,7 @@ window.addEventListener('load', function() {
 		
 		}
 		 
-	
+		
 	});//END_SOCKET.ON
 	
 
