@@ -31,7 +31,7 @@ io.on('connection', function(socket){
 	socket.on('PING', function (_pack)
 	{
 	  //console.log('_pack# '+_pack);
-	  var pack = JSON.parse(_pack);	
+	  var pack = JSON.parse(_pack)	
 
 	    console.log('message from user# '+socket.id+": "+pack.msg);
         
@@ -78,8 +78,8 @@ io.on('connection', function(socket){
 		//send to the client.js script
 		socket.emit("LOGIN_SUCCESS",currentUser.id,currentUser.name,currentUser.posX,currentUser.posY,currentUser.posZ);
 		
-         //spawn all connected clients for currentUser client 
-         clients.forEach( function(i) {
+		 //spawn all connected clients for currentUser client 
+		 clients.forEach( function(i) {
 		    if(i.id!=currentUser.id)
 			{ 
 		      //send to the client.js script
@@ -101,7 +101,7 @@ io.on('connection', function(socket){
 	//create a callback fuction to listening EmitMoveAndRotate() method in NetworkMannager.cs unity script
 	socket.on('MOVE_AND_ROTATE', function (_data)
 	{
-	  var data = JSON.parse(_data);	
+	  var data = JSON.parse(_data)	
 	  
 	  if(currentUser)
 	  {
@@ -123,7 +123,7 @@ io.on('connection', function(socket){
 //create a callback fuction to listening EmitAnimation() method in NetworkMannager.cs unity script
 	socket.on('ANIMATION', function (_data)
 	{
-	  var data = JSON.parse(_data);	
+	  var data = JSON.parse(_data)	
 	  
 	  if(currentUser)
 	  {
@@ -138,8 +138,15 @@ io.on('connection', function(socket){
       }//END_IF
 	  
 	});//END_SOCKET_ON
-	
-	
+
+	// Combat HIT relay
+	socket.on('HIT', function(_data)
+	{
+	   var payload = JSON.parse(_data);
+	   var flat = payload.attackerId+":"+payload.targetId+":"+payload.weaponDamage+":"+payload.attackDamage+":"+payload.hitX+":"+payload.hitY+":"+payload.hitZ+":"+payload.attackName+":"+payload.hitId;
+	   io.emit('HIT', flat);
+	});
+
 
     // called when the user desconnect
 	socket.on('disconnect', function ()
