@@ -95,14 +95,6 @@ window.addEventListener('load', function() {
 			window.unityInstance.SendMessage ('NetworkManager', 'OnHit', flat);
 		}
 	});
-
-	// Victim-authoritative reaction relay (flat: targetId:clipName:willKD:attackerId)
-	socket.on('HIT_REACTION', function(flat) {
-		if(window.unityInstance!=null)
-		{
-			window.unityInstance.SendMessage ('NetworkManager', 'OnHitReaction', flat);
-		}
-	});
 			        
 	socket.on('USER_DISCONNECTED', function(id) {
 	
