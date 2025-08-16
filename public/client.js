@@ -95,6 +95,14 @@ window.addEventListener('load', function() {
 			window.unityInstance.SendMessage ('NetworkManager', 'OnHit', flat);
 		}
 	});
+
+	// Reaction replication: forward reaction clip chosen by the owner
+	socket.on('HIT_REACTION', function(flat) {
+		if(window.unityInstance!=null)
+		{
+			window.unityInstance.SendMessage ('NetworkManager', 'OnHitReaction', flat);
+		}
+	});
 			        
 	socket.on('USER_DISCONNECTED', function(id) {
 	
