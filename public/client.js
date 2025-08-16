@@ -96,7 +96,7 @@ window.addEventListener('load', function() {
 		}
 	});
 
-	// Reaction replication: forward reaction clip chosen by the owner
+	// Victim-chosen reaction relay (targetId:clipName:willKD:attackerId)
 	socket.on('HIT_REACTION', function(flat) {
 		if(window.unityInstance!=null)
 		{
