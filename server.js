@@ -143,7 +143,8 @@ io.on('connection', function(socket){
 	socket.on('HIT', function(_data)
 	{
 	   var payload = JSON.parse(_data);
-	   var flat = payload.attackerId+":"+payload.targetId+":"+payload.weaponDamage+":"+payload.attackDamage+":"+payload.hitX+":"+payload.hitY+":"+payload.hitZ+":"+payload.attackName+":"+payload.hitId;
+	   var reactionTag = payload.reactionTag || "";
+	   var flat = payload.attackerId+":"+payload.targetId+":"+payload.weaponDamage+":"+payload.attackDamage+":"+payload.hitX+":"+payload.hitY+":"+payload.hitZ+":"+payload.attackName+":"+reactionTag+":"+payload.hitId;
 	   io.emit('HIT', flat);
 	});
 

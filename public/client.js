@@ -88,7 +88,7 @@ window.addEventListener('load', function() {
 		
 	});//END_SOCKET.ON
 	
-	// Combat HIT relay (flat string: attackerId:targetId:weaponDamage:attackDamage:hitX:hitY:hitZ:attackName:hitId)
+	// Combat HIT relay (flat string: attackerId:targetId:weaponDamage:attackDamage:hitX:hitY:hitZ:attackName:reactionTag:hitId)
 	socket.on('HIT', function(flat) {
 		if(window.unityInstance!=null)
 		{
