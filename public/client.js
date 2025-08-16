@@ -96,7 +96,7 @@ window.addEventListener('load', function() {
 		}
 	});
 
-	// Victim-chosen reaction relay (targetId:clipName:willKD:attackerId)
+	// Victim-authoritative reaction relay (flat: targetId:clipName:willKD:attackerId)
 	socket.on('HIT_REACTION', function(flat) {
 		if(window.unityInstance!=null)
 		{

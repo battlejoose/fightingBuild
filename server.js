@@ -147,6 +147,16 @@ io.on('connection', function(socket){
 	   io.emit('HIT', flat);
 	});
 
+	// Victim-authoritative reaction relay
+	socket.on('HIT_REACTION', function(_data)
+	{
+	   try {
+	     var payload = JSON.parse(_data);
+	     var flat = (payload.targetId||'')+":"+(payload.clip||'')+":"+(payload.willKD||'')+":"+(payload.attackerId||'');
+	     io.emit('HIT_REACTION', flat);
+	   } catch(e) { console.log('HIT_REACTION parse error', e); }
+	});
+
 
     // called when the user desconnect
 	socket.on('disconnect', function ()
