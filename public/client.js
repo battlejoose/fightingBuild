@@ -111,6 +111,14 @@ window.addEventListener('load', function() {
 			window.unityInstance.SendMessage ('NetworkManager', 'OnHealthUpdate', flat);
 		}
 	});
+
+	// Knockdown state sync from victim owner
+	socket.on('KNOCKDOWN', function(flat) {
+		if(window.unityInstance!=null)
+		{
+			window.unityInstance.SendMessage ('NetworkManager', 'OnKnockdown', flat);
+		}
+	});
 			        
 	socket.on('USER_DISCONNECTED', function(id) {
 	

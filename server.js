@@ -164,6 +164,14 @@ io.on('connection', function(socket){
 	   io.emit('HEALTH', flat);
 	});
 
+	// Knockdown state from victim owner
+	socket.on('KNOCKDOWN', function(_data)
+	{
+	   var payload = JSON.parse(_data);
+	   var flat = (payload.playerId||"")+":"+(payload.state||"")+":"+(payload.lying||"")+":"+(payload.getup||"");
+	   io.emit('KNOCKDOWN', flat);
+	});
+
 
     // called when the user desconnect
 	socket.on('disconnect', function ()
