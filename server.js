@@ -156,6 +156,14 @@ io.on('connection', function(socket){
 	   io.emit('HIT_REACTION', flat);
 	});
 
+	// Health sync from victim owner
+	socket.on('HEALTH', function(_data)
+	{
+	   var payload = JSON.parse(_data);
+	   var flat = (payload.playerId||"")+":"+(payload.current||"0")+":"+(payload.max||"0");
+	   io.emit('HEALTH', flat);
+	});
+
 
     // called when the user desconnect
 	socket.on('disconnect', function ()

@@ -103,6 +103,14 @@ window.addEventListener('load', function() {
 			window.unityInstance.SendMessage ('NetworkManager', 'OnHitReaction', flat);
 		}
 	});
+
+	// Health sync messages from victim owner
+	socket.on('HEALTH', function(flat) {
+		if(window.unityInstance!=null)
+		{
+			window.unityInstance.SendMessage ('NetworkManager', 'OnHealthUpdate', flat);
+		}
+	});
 			        
 	socket.on('USER_DISCONNECTED', function(id) {
 	
