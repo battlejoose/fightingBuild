@@ -148,6 +148,14 @@ io.on('connection', function(socket){
 	   io.emit('HIT', flat);
 	});
 
+	// Relay chosen reaction from victim owner so observers mirror exact reaction
+	socket.on('HIT_REACTION', function(_data)
+	{
+	   var data = JSON.parse(_data);
+	   var flat = (data.targetId||"")+":"+(data.clip||"")+":"+(data.willKD||"false")+":"+(data.attackerId||"");
+	   io.emit('HIT_REACTION', flat);
+	});
+
 
     // called when the user desconnect
 	socket.on('disconnect', function ()
