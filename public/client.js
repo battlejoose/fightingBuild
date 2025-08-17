@@ -96,7 +96,7 @@ window.addEventListener('load', function() {
 		}
 	});
 
-	// Mirror exact reaction chosen by victim owner
+	// Victim owner's reaction mirror so observers play the exact same clip
 	socket.on('HIT_REACTION', function(flat) {
 		if(window.unityInstance!=null)
 		{
